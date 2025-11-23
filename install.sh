@@ -189,7 +189,10 @@ EOF
         ln -sf ~/.charfiles/src/nvim ~/.config/nvim
         
         # Create symlinks for home directory
-        ln -sf ~/.charfiles/src/zim ~/.zim
+        ln -sf ~/.charfiles/src/git/.gitconfig ~/.gitconfig
+        ln -sf ~/.charfiles/src/.bash_profile ~/.bash_profile
+        ln -sf ~/.charfiles/src/.bashrc ~/.bashrc
+        ln -sf ~/.charfiles/src/zsh/.zshrc ~/.zshrc
         ln -sf ~/.charfiles/src/zsh ~/.zsh
     '
     sleep 1
