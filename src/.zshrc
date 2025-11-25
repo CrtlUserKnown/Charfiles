@@ -5,7 +5,8 @@
 
 # --- config:homebrew ---
 # Initialize Homebrew
-if [[ -f "/opt/homebrew/bin/brew" ]]; then
+if [[ -f "/opt/homebrew/bin/brew" ]];
+then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [[ -f "/usr/local/bin/brew" ]]; then
   eval "$(/usr/local/bin/brew shellenv)"
@@ -55,8 +56,10 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS='--preview "bat --color=always --line-range :500 {}"'
 
 # ALT-C options (directory search)
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
-export FZF_ALT_C_OPTS='--preview "tree -C {} | head -200"'
+export FZF_ALT_C_COMMAND='fd 
+--type d --hidden --follow --exclude .git'
+export FZF_ALT_C_OPTS='--preview "tree -C {} |
+head -200"'
 
 # CTRL-R options (command history)
 export FZF_CTRL_R_OPTS='--preview "echo {}" --preview-window down:3:wrap'
@@ -110,7 +113,8 @@ zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
 
 # --- config:zsh-syntax-highlighting ---
 # Load zsh-syntax-highlighting (install via: brew install zsh-syntax-highlighting)
-if [[ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+if [[ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]];
+then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [[ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -123,7 +127,8 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
 
 # --- config:zsh-autosuggestions ---
 # Load zsh-autosuggestions (install via: brew install zsh-autosuggestions)
-if [[ -f "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+if [[ -f "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]];
+then
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -134,21 +139,24 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
 # --- config:zsh-history-substring-search ---
 # Load zsh-history-substring-search (install via: brew install zsh-history-substring-search)
-if [[ -f "/opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
+if [[ -f "/opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh" ]];
+then
   source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 elif [[ -f "/usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
   source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
 
 # Bind keys for history substring search
-if (( ${+functions[_zsh_highlight_bind_widgets]} )); then
+if (( ${+functions[_zsh_highlight_bind_widgets]} ));
+then
   bindkey '^[[A' history-substring-search-up
   bindkey '^[[B' history-substring-search-down
 fi
 
 # --- config:aliases ---
 # import aliases
-if [ -f ~/.config/zsh/aliases.zsh ]; then
+if [ -f ~/.config/zsh/aliases.zsh ];
+then
   source ~/.config/zsh/aliases.zsh
 fi
 
@@ -177,7 +185,8 @@ bindkey -M menuselect '^[' send-break                    # Esc: cancel completio
 
 # --- config:fastfetch ---
 # Run fastfetch only once per session
-if [[ ! -f /tmp/neofetch_run_$$ ]]; then
+if [[ !
+-f /tmp/neofetch_run_$$ ]]; then
   fastfetch
   touch /tmp/neofetch_run_$$
 fi
@@ -185,3 +194,10 @@ fi
 # --- config:zoxide ---
 # initialize zoxide (provides `z` and `zi`, plus completions)
 eval "$(zoxide init zsh)"
+
+# --- config:keybindings (Final Fix for Autosuggestion) ---
+# FIX: Force Right Arrow to accept autosuggestion by binding it after all plugins load.
+# This ensures it overrides any conflict from zsh-history-substring-search.
+# The key code for your terminal is confirmed to be '^[[C'
+bindkey '^[[C' autosuggest-accept
+bindkey '^[OC' autosuggest-accept

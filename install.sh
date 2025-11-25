@@ -134,7 +134,7 @@ EOF
     link_config() {
         source_path="$1"
         dest_path="$2"
-        
+
         # Check if source exists
         if [ ! -e "$source_path" ]; then
             echo "⚠️ Source not found: $source_path. Skipping."
@@ -172,7 +172,7 @@ EOF
 
     # 2. Link Files to Home Directory
     # Files that traditionally live in ~
-    
+
     # Git
     if [ -f "$DOTFILES_DIR/src/git/.gitconfig" ]; then
         link_config "$DOTFILES_DIR/src/git/.gitconfig" "$HOME/.gitconfig"
@@ -183,7 +183,7 @@ EOF
     if [ -f "$DOTFILES_DIR/src/zsh/.zshrc" ]; then
         link_config "$DOTFILES_DIR/src/zsh/.zshrc" "$HOME/.zshrc"
     fi
-    
+
     # If Zsh theme folder exists, we might want to link the whole zsh folder to a hidden .zsh dir
     # or just rely on .zshrc configuration. 
     # Based on your previous script, you had a ~/.zsh link.
