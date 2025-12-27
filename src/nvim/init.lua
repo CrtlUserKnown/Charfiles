@@ -1,7 +1,6 @@
 -- set leader keys before anything else
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-vim.opt.timeoutlen = 2000 -- better timeout lenght
 
 -- --- config:load
 -- highlight current line number
@@ -9,6 +8,9 @@ vim.api.nvim_set_hl(0, 'CursorLineNr', {
   fg = '#f6c177',  -- Rosé Pine gold (yellow-orange)
   bold = true
 })
+
+-- load statusline configuration
+require('statusline')
 
 -- load neovim options
 require('options')

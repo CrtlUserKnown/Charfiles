@@ -12,10 +12,10 @@ vim.keymap.set('n', '[[', 'gg', { noremap = true, silent = true, desc = 'Go to b
 vim.keymap.set('n', ']]', 'G', { noremap = true, silent = true, desc = 'Go to end of file' })
 
 -- go to beginning and end of line
-vim.keymap.set('n', 'el', '0', { noremap = true, silent = true, desc = 'Go to beginning of line' })
-vim.keymap.set('n', 'ea', '$', { noremap = true, silent = true, desc = 'Go to end of line' })
-vim.keymap.set('v', 'el', '0', { noremap = true, silent = true, desc = 'Go to beginning of line' })
-vim.keymap.set('v', 'ea', '$', { noremap = true, silent = true, desc = 'Go to end of line' })
+vim.keymap.set('n', 'H', '0', { noremap = true, silent = true, desc = 'Go to beginning of line' })
+vim.keymap.set('n', 'L', '$', { noremap = true, silent = true, desc = 'Go to end of line' })
+vim.keymap.set('v', 'H', '0', { noremap = true, silent = true, desc = 'Go to beginning of line' })
+vim.keymap.set('v', 'L', '$', { noremap = true, silent = true, desc = 'Go to end of line' })
 
 -- paragraph navigation with Option + ( and )
 vim.keymap.set('n', '<M-[>', '{', { noremap = true, silent = true, desc = 'Previous paragraph' })
@@ -33,6 +33,12 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
 vim.keymap.set('i', '<C-k>', '<Esc>:m .-2<CR>==gi', { desc = 'Move line up' })
 vim.keymap.set('i', '<C-j>', '<Esc>:m .+1<CR>==gi', { desc = 'Move line down' })
+
+-- Copy line up and down with ctrl + shift + j/k
+vim.keymap.set('n', '<C-S-k>', ':t .-1<CR>==', { desc = 'Copy line up' })
+vim.keymap.set('n', '<C-S-j>', ':t .<CR>==', { desc = 'Copy line down' })
+vim.keymap.set('v', '<C-S-k>', ":t '<-1<CR>gv=gv", { desc = 'Copy selection up' })
+vim.keymap.set('v', '<C-S-j>', ":t '><CR>gv=gv", { desc = 'Copy selection down' })
 
 -- Fix navigation when not inside tmux
 vim.g.tmux_navigator_no_mappings = 1
